@@ -6,6 +6,7 @@ import { BrowserRouter, Route, Routes } from "react-router-dom";
 
 const App = () => {
   const [todos, setTodos] = useState([]);
+  const [editTodo, setEditTodo] = useState(null);
   const [todo, setTodo] = useState({
     title: "",
     isComplete: false,
@@ -23,12 +24,20 @@ const App = () => {
                 setTodos={setTodos}
                 todo={todo}
                 setTodo={setTodo}
+                editTodo={editTodo}
+                setEditTodo={setEditTodo}
               />
             }
           />
           <Route
             path="/todoList"
-            element={<TodoList todos={todos} setTodos={setTodos} />}
+            element={
+              <TodoList
+                todos={todos}
+                setEditTodo={setEditTodo}
+                setTodos={setTodos}
+              />
+            }
           />
           <Route>404 PAGE NOT FOUND</Route>
         </Routes>
