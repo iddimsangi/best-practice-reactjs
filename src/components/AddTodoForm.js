@@ -1,8 +1,7 @@
 import React, { useEffect } from "react";
-
+import { useNavigate } from "react-router-dom";
 const AddTodoForm = ({ todos, setTodos, todo, setTodo }) => {
-  //   const [value, setValue] = useState("");
-
+  const navigate = useNavigate();
   const onChangeHandler = (e) => {
     const { name, value } = e.target;
     return setTodo({
@@ -19,6 +18,7 @@ const AddTodoForm = ({ todos, setTodos, todo, setTodo }) => {
       ...todo,
       title: "",
     });
+    navigate("/todoList");
   };
 
   useEffect(() => {

@@ -1,7 +1,8 @@
-import React from 'react';
+import React from "react";
 
-const TotalCompleteItems = () => {
-	return <h4 className='mt-3'>Total Complete Items: 5</h4>;
+const TotalCompleteItems = ({ total }) => {
+  console.log(total);
+  return <h4 className="mt-3">Total Complete Items: {total}</h4>;
 };
 
 export default TotalCompleteItems;

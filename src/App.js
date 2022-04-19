@@ -26,7 +26,10 @@ const App = () => {
               />
             }
           />
-          <Route path="/todoList" element={<TodoList />} />
+          <Route
+            path="/todoList"
+            element={<TodoList todos={todos} setTodos={setTodos} />}
+          />
           <Route>404 PAGE NOT FOUND</Route>
         </Routes>
       </div>
