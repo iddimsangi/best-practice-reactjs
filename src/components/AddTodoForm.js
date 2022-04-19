@@ -1,29 +1,48 @@
-import React, { useState } from 'react';
+import React, { useEffect } from "react";
 
-const AddTodoForm = () => {
-	const [value, setValue] = useState('');
+const AddTodoForm = ({ todos, setTodos, todo, setTodo }) => {
+  //   const [value, setValue] = useState("");
 
-	const onSubmit = (event) => {
-		event.preventDefault();
-		console.log('user entered: ' + value);
-	};
+  const onChangeHandler = (e) => {
+    const { name, value } = e.target;
+    return setTodo({
+      ...todo,
+      [name]: value,
+    });
+  };
 
-	return (
-		<form onSubmit={onSubmit} className='form-inline mt-3 mb-3'>
-			<label className='sr-only'>Name</label>
-			<input
-				type='text'
-				className='form-control mb-2 mr-sm-2'
-				placeholder='Add todo...'
-				value={value}
-				onChange={(event) => setValue(event.target.value)}
-			></input>
+  const onSubmit = (event) => {
+    event.preventDefault();
+    setTodos([{ id: new Date(), ...todo }, ...todos]);
+    console.log(todos);
+    setTodo({
+      ...todo,
+      title: "",
+    });
+  };
 
-			<button type='submit' className='btn btn-primary mb-2'>
-				Submit
-			</button>
-		</form>
-	);
+  useEffect(() => {
+    console.log(todos);
+  }, [todos]);
+
+  return (
+    <form onSubmit={onSubmit} className="form-inline mt-3 mb-3">
+      <label className="sr-only">Name</label>
+      <input
+        type="text"
+        name="title"
+        className="form-control mb-2 mr-sm-2"
+        placeholder="Add todo..."
+        value={todo.title}
+        onChange={onChangeHandler}
+        required
+      ></input>
+
+      <button type="submit" className="btn btn-primary mb-2">
+        Submit
+      </button>
+    </form>
+  );
 };
 
 export default AddTodoForm;
