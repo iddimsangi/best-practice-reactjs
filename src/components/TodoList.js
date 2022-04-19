@@ -6,11 +6,7 @@ const TodoList = ({ todos, setTodos }) => {
   return (
     <ul className="list-group">
       {todos.map((todo) => (
-        <TodoItem
-          key={todo.id}
-          title={todo.title}
-          completed={todo.isComplete}
-        />
+        <TodoItem key={todo.id} setTodos={setTodos} todos={todos} todo={todo} />
       ))}
       <TotalCompleteItems total={todos.length} />
     </ul>
